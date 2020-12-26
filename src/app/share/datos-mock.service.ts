@@ -10,7 +10,23 @@ export class DatosMockService implements Datos {
     this.crearEstudios();
   }
   private crearEstudios() {
-    this.estudios.set("ESO", ["e1a", "e1b", "e1c", "e1d"]);
+    this.estudios.set("ESO", [
+      "e1a",
+      "e1b",
+      "e1c",
+      "e1d",
+      "e2a",
+      "e2b",
+      "e2c",
+      "e2d",
+      "3a",
+      "3b",
+      "3c",
+      "3d",
+      "4a",
+      "4b",
+      "4c",
+    ]);
     this.estudios.set("DIV", ["3div", "4div"]);
     this.estudios.set("BAC", ["1a", "1b", "1c", "2a", "2b", "2c"]);
     this.estudios.set("PCPI", ["1pcpi", "2pcpi"]);

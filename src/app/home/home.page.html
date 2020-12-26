@@ -1,7 +1,7 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-text-center">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Estudios
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,6 +9,6 @@
 <ion-content [fullscreen]="true" class="ion-text-center">
   <ion-list>
     <ion-list-header>Lista de Estudios:</ion-list-header>
-    <ion-item button *ngFor="let estudio of estudios">{{estudio}}</ion-item>
+    <ion-item button *ngFor="let estudio of estudios" (click)="pasarEstudio(estudio)">{{estudio}}</ion-item>
   </ion-list>
 </ion-content>
