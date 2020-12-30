@@ -21,10 +21,9 @@ export class HorarioPage implements OnInit {
     this.rutaActivada.queryParams.subscribe(() => {
       this.grupoHorario = this.route.getCurrentNavigation().extras.state.grupoPulsado;
     });
-    console.log("Por el mock");
-    console.log(this.datosMock.getDiasSemana());
-    this.horario = new Horario(this.datosMock.getDiasSemana());
-    console.log("Por el objeto horario");
-    console.log(this.horario.diasSemana);
+    this.horario = new Horario(
+      this.datosMock.getDiasSemana(),
+      this.datosMock.getTramoHorarios()
+    );
   }
 }
