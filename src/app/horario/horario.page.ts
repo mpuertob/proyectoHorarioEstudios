@@ -19,6 +19,5 @@ export class HorarioPage implements OnInit {
     this.rutaActivada.queryParams.subscribe(() => {
       this.grupoHorario = this.route.getCurrentNavigation().extras.state.grupoPulsado;
     });
-    alert("Hemos entrado en horarios: " + this.grupoHorario);
   }
 }
