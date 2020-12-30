@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'grupos',
     loadChildren: () => import('./grupos/grupos.module').then( m => m.GruposPageModule)
   },
+  {
+    path: 'horario',
+    loadChildren: () => import('./horario/horario.module').then( m => m.HorarioPageModule)
+  },
 ];
 
 @NgModule({

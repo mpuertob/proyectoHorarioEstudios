@@ -23,4 +23,12 @@ export class GruposPage implements OnInit {
     });
     this.obtenerGrupos();
   }
+  pasarGrupoHorario(grupo: string) {
+    let extrasNavegacion: NavigationExtras = {
+      state: {
+        grupoPulsado: grupo,
+      },
+    };
+    this.route.navigate(["horario"], extrasNavegacion);
+  }
 }

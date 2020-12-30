@@ -10,6 +10,6 @@
 <ion-content [fullscreen]="true" class="ion-text-center">
   <ion-list>
     <ion-list-header>Lista de Grupos:</ion-list-header>
-    <ion-item button *ngFor="let grupo of grupos">{{grupo}}</ion-item>
+    <ion-item button *ngFor="let grupo of grupos" (click)="pasarGrupoHorario(grupo)">{{grupo}}</ion-item>
   </ion-list>
 </ion-content>
