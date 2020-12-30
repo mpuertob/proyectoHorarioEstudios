@@ -6,6 +6,7 @@ import { Datos } from "../interface/datos";
 })
 export class DatosMockService implements Datos {
   private estudios: Map<String, String[]> = new Map<String, String[]>();
+  private diasSemana: Map<Number, String> = new Map<Number, String>();
   constructor() {
     this.crearEstudios();
   }
@@ -39,5 +40,18 @@ export class DatosMockService implements Datos {
   }
   getGrupos(estudio: string): String[] {
     return this.estudios.get(estudio);
+  }
+  getDiasSemana(): Map<Number, String> {
+    let nombres: string[] = [
+      "LUNES",
+      "MARTES",
+      "MIERCOLES",
+      "JUEVES",
+      "VIERNES",
+    ];
+    for (let i = 1; i <= nombres.length; i++) {
+      this.diasSemana.set(i, nombres[i - 1]);
+    }
+    return this.diasSemana;
   }
 }
