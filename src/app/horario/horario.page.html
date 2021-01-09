@@ -9,10 +9,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-col>HORAS
-  </ion-col>
-  <ion-col *ngFor="let dia of horario.diasSemana">{{dia}}</ion-col>
 
+  <ion-col *ngFor="let celda of horario.cabecera">{{celda}}
+    <pre style='display:inline'>&#09;</pre>
+    <pre style='display:inline'>&#09;</pre>
+  </ion-col>
   <ion-row *ngFor="let hora of horario.tramoHorario">{{hora}}</ion-row>
 
 </ion-content>

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Asignatura } from "../core/model/asignatura";
 import { Datos } from "../interface/datos";
 
 @Injectable({
@@ -8,8 +9,14 @@ export class DatosMockService implements Datos {
   private estudios: Map<String, String[]> = new Map<String, String[]>();
   private diasSemana: string[];
   private tramoHorario: string[];
+  private asignaturas: Map<String, Asignatura> = new Map<String, Asignatura>();
+  private diasAsignaturas: Map<String, Asignatura[]> = new Map<
+    String,
+    Asignatura[]
+  >();
   constructor() {
     this.crearEstudios();
+    this.crearAsignaturas();
   }
   private crearEstudios() {
     this.estudios.set("ESO", [
@@ -34,6 +41,42 @@ export class DatosMockService implements Datos {
     this.estudios.set("PCPI", ["1pcpi", "2pcpi"]);
     this.estudios.set("GM", ["1ga", "2ga"]);
     this.estudios.set("GS", ["1af", "1inf", "2af", "2inf"]);
+  }
+  private crearAsignaturas() {
+    let acceso: Asignatura = new Asignatura("ACADT", "Acceso a datos");
+    this.asignaturas.set(acceso.abreviatura, acceso);
+    let desarrollo: Asignatura = new Asignatura(
+      "DEDIN",
+      "Desarrollo de interfaces"
+    );
+    this.asignaturas.set(desarrollo.abreviatura, desarrollo);
+
+    let empresa: Asignatura = new Asignatura(
+      "EIE",
+      "Empresa e Iniciativa Emprendedora"
+    );
+    this.asignaturas.set(empresa.abreviatura, empresa);
+    let programacionServicios: Asignatura = new Asignatura(
+      "PRSYP",
+      "Programación de servicios y procesos"
+    );
+    this.asignaturas.set(
+      programacionServicios.abreviatura,
+      programacionServicios
+    );
+    let programacionMultimedia: Asignatura = new Asignatura(
+      "PMYDM",
+      "Programación multimedia y dispositivos móviles"
+    );
+    this.asignaturas.set(
+      programacionMultimedia.abreviatura,
+      programacionMultimedia
+    );
+    let gestionEmpresarial: Asignatura = new Asignatura(
+      "SIGEE",
+      "Sistemas de gestión empresarial"
+    );
+    this.asignaturas.set(gestionEmpresarial.abreviatura, gestionEmpresarial);
   }
   getEstudios(): String[] {
     let claves = Array.from(this.estudios.keys());
@@ -65,5 +108,27 @@ export class DatosMockService implements Datos {
     ];
     this.tramoHorario = tramoHorario;
     return this.tramoHorario;
+  }
+  getAsignaturas(): Map<String, Asignatura> {
+    return this.asignaturas;
+  }
+  getDiasAsignaturas(): Map<String, Asignatura[]> {
+    let diasSemanas = this.getDiasSemana();
+    diasSemanas.forEach((dia) => {
+      let asignaturas: Asignatura[] = [];
+      asignaturas.push(this.obtenerAsignaturaAleatoria());
+      this.diasAsignaturas.set(dia, asignaturas);
+    });
+    alert("Dias Asignaturas: " + this.diasAsignaturas);
+    console.log(this.diasAsignaturas);
+    return this.diasAsignaturas;
+  }
+  private obtenerAsignaturaAleatoria(): Asignatura {
+    let abreviaturas = Array.from(this.getAsignaturas().keys());
+    let aleatorio: number = this.obtenerNumeroAleatorio(0, abreviaturas.length);
+    return this.asignaturas.get(abreviaturas[aleatorio]);
+  }
+  private obtenerNumeroAleatorio(min: number, max: number): number {
+    return Number((Math.random() * (max - min) + min).toFixed(0));
   }
 }
