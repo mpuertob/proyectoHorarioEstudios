@@ -131,14 +131,11 @@ export class DatosMockService implements Datos {
           mapaHorasConAsignaturas.set(hora, asignaturas);
         }
       }
-
       diasClases.set(dia, mapaHorasConAsignaturas);
       let asignaturas: Asignatura[] = [];
       asignaturas.push(this.obtenerAsignaturaAleatoria());
       this.diasAsignaturas.set(dia, asignaturas);
     });
-    console.log("Vamos a ver todo");
-    console.log(diasClases);
     return diasClases;
   }
   private obtenerAsignaturaAleatoria(): Asignatura {

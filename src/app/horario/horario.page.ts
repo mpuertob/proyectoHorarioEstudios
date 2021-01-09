@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Asignatura } from "../core/model/asignatura";
 import { Horario } from "../core/model/horario";
 import { DatosMockService } from "../share/datos-mock.service";
 
