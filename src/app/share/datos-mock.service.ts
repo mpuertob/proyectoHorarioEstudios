@@ -101,7 +101,7 @@ export class DatosMockService implements Datos {
       "8:10-9:05",
       "9:05-10:00",
       "10:00-10:55",
-      "Recreo",
+      "RECREO",
       "11:25-12:20",
       "12:20-13:15",
       "13:15-14:10",
@@ -112,16 +112,34 @@ export class DatosMockService implements Datos {
   getAsignaturas(): Map<String, Asignatura> {
     return this.asignaturas;
   }
-  getDiasAsignaturas(): Map<String, Asignatura[]> {
+  getDiasClases(): Map<String, Map<String, Asignatura[]>> {
     let diasSemanas = this.getDiasSemana();
+    let diasClases: Map<String, Map<String, Asignatura[]>> = new Map<
+      String,
+      Map<String, Asignatura[]>
+    >();
     diasSemanas.forEach((dia) => {
+      let mapaHorasConAsignaturas: Map<String, Asignatura[]> = new Map<
+        String,
+        Asignatura[]
+      >();
+      for (let i = 0; i < this.tramoHorario.length; i++) {
+        let hora: string = this.tramoHorario[i];
+        if (hora != "RECREO") {
+          let asignaturas: Asignatura[] = [];
+          asignaturas.push(this.obtenerAsignaturaAleatoria());
+          mapaHorasConAsignaturas.set(hora, asignaturas);
+        }
+      }
+
+      diasClases.set(dia, mapaHorasConAsignaturas);
       let asignaturas: Asignatura[] = [];
       asignaturas.push(this.obtenerAsignaturaAleatoria());
       this.diasAsignaturas.set(dia, asignaturas);
     });
-    alert("Dias Asignaturas: " + this.diasAsignaturas);
-    console.log(this.diasAsignaturas);
-    return this.diasAsignaturas;
+    console.log("Vamos a ver todo");
+    console.log(diasClases);
+    return diasClases;
   }
   private obtenerAsignaturaAleatoria(): Asignatura {
     let abreviaturas = Array.from(this.getAsignaturas().keys());

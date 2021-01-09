@@ -25,8 +25,7 @@ export class HorarioPage implements OnInit {
     this.horario = new Horario(
       this.datosMock.getDiasSemana(),
       this.datosMock.getTramoHorarios(),
-      this.datosMock.getAsignaturas(),
-      this.datosMock.getDiasAsignaturas()
+      this.datosMock.getDiasClases()
     );
   }
 }
