@@ -20,4 +20,8 @@ export class Horario {
   get diasClases() {
     return this._diasClases;
   }
+  obtenerAsingnaturaConcreta(hora: String): String {
+    // let asignatura: Asignatura = this._diasClases.get("LUNES").get(hora)[0];
+    return "CAC";
+  }
 }
