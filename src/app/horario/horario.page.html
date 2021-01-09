@@ -10,17 +10,33 @@
 
 <ion-content>
 
-  <ion-col *ngFor="let celda of horario.cabecera">{{celda}}
-    <pre style='display:inline'>&#09;</pre>
-    <pre style='display:inline'>&#09;</pre>
-  </ion-col>
+  <ion-row>
+    <ion-col *ngFor="let item of horario.cabecera">
+      {{item}}
+      <pre style='display:inline'>&#09;</pre>
+      <pre style='display:inline'>&#09;</pre>
+    </ion-col>
+  </ion-row>
   <ion-row *ngFor="let hora of horario.tramoHorario">{{hora}}</ion-row>
+
 
 </ion-content>
 <ion-content>
   <h1>Probando</h1>
-  <ion-col *ngFor="let celda of obtenerDiasSemana()">{{celda}}
-    <pre style='display:inline'>&#09;</pre>
-    <pre style='display:inline'>&#09;</pre>
-  </ion-col>
+
+  <ion-row>
+    <ion-col *ngFor="let item of horario.cabecera">
+      {{item}}
+    </ion-col>
+  </ion-row>
+
+  <!-- Ahora sería recorrer todo el mapa e ir obteniendo todo el tema
+  <ion-row *ngFor="let equipo of liga.clasificacion.listaEquiposArray">
+    <ion-col>{{equipo.posicion}}</ion-col>
+    <ion-col>{{equipo.nombre}}</ion-col>
+    <ion-col>{{equipo.puntos}}</ion-col>
+    <ion-col>{{equipo.golesFavor}}</ion-col>
+    <ion-col>{{equipo.golesContra}}</ion-col>
+  </ion-row> -->
+
 </ion-content>
