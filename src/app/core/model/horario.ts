@@ -21,7 +21,17 @@ export class Horario {
     return this._diasClases;
   }
   obtenerAsingnaturaConcreta(hora: String): String {
+    console.log("Lunes");
+
+    console.log(this._diasClases.get("LUNES"));
+    console.log("En la hora: " + hora);
+    console.log(this._diasClases.get("LUNES").get(hora));
     // let asignatura: Asignatura = this._diasClases.get("LUNES").get(hora)[0];
-    return "CAC";
+    let asignatura: Asignatura[] = this._diasClases.get("LUNES").get(hora);
+    let abreviatura: String = "RECREO";
+    if (asignatura && asignatura.length > 0) {
+      abreviatura = asignatura[0].abreviatura;
+    }
+    return abreviatura;
   }
 }
