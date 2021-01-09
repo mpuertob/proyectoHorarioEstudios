@@ -113,12 +113,11 @@ export class DatosMockService implements Datos {
     return this.asignaturas;
   }
   getDiasClases(): Map<String, Map<String, Asignatura[]>> {
-    let diasSemanas = this.getDiasSemana();
     let diasClases: Map<String, Map<String, Asignatura[]>> = new Map<
       String,
       Map<String, Asignatura[]>
     >();
-    diasSemanas.forEach((dia) => {
+    this.getDiasSemana().forEach((dia) => {
       let mapaHorasConAsignaturas: Map<String, Asignatura[]> = new Map<
         String,
         Asignatura[]
