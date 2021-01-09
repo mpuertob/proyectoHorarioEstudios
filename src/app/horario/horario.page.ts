@@ -24,9 +24,11 @@ export class HorarioPage implements OnInit {
     });
     console.log(this.datosMock.getDiasClases());
     this.horario = new Horario(
-      this.datosMock.getDiasSemana(),
       this.datosMock.getTramoHorarios(),
       this.datosMock.getDiasClases()
     );
+  }
+  obtenerDiasSemana() {
+    return Array.from(this.datosMock.getDiasClases().keys());
   }
 }

@@ -1,18 +1,15 @@
 import { Asignatura } from "./asignatura";
 
 export class Horario {
-  private _cabecera: string[] = ["HORA"];
+  private _cabecera: String[] = ["HORA"];
   constructor(
-    private _diasSemana: string[],
     private _tramoHorario: string[],
-    private _diasAsignaturas: Map<String, Map<String, Asignatura[]>>
+    private _diasClases: Map<String, Map<String, Asignatura[]>>
   ) {
-    this._diasSemana.forEach((dia) => {
+    let diasSemana = Array.from(this._diasClases.keys());
+    diasSemana.forEach((dia) => {
       this._cabecera.push(dia);
     });
-  }
-  get diasSemana() {
-    return this._diasSemana;
   }
   get tramoHorario() {
     return this._tramoHorario;
@@ -20,7 +17,7 @@ export class Horario {
   get cabecera() {
     return this._cabecera;
   }
-  get diasAsignaturas() {
-    return this._diasAsignaturas;
+  get diasClases() {
+    return this._diasClases;
   }
 }
