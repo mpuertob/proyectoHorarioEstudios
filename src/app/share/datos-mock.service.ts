@@ -113,16 +113,17 @@ export class DatosMockService implements Datos {
     return this.asignaturas;
   }
   getDiasClases(): Map<String, Map<String, Asignatura[]>> {
-    let diasClases: Map<String, Map<String, Asignatura[]>> = new Map<
+    let diasSemanas = this.getDiasSemana();
+    let diaClases: Map<String, Map<String, Asignatura[]>> = new Map<
       String,
       Map<String, Asignatura[]>
     >();
-    this.getDiasSemana().forEach((dia) => {
+    diasSemanas.forEach((dia) => {
       let mapaHorasConAsignaturas: Map<String, Asignatura[]> = new Map<
         String,
         Asignatura[]
       >();
-      for (let i = 0; i < this.tramoHorario.length; i++) {
+      for (let i = 0; i < this.getTramoHorarios().length; i++) {
         let hora: string = this.tramoHorario[i];
         if (hora != "RECREO") {
           let asignaturas: Asignatura[] = [];
@@ -130,12 +131,15 @@ export class DatosMockService implements Datos {
           mapaHorasConAsignaturas.set(hora, asignaturas);
         }
       }
-      diasClases.set(dia, mapaHorasConAsignaturas);
+
+      diaClases.set(dia, mapaHorasConAsignaturas);
       let asignaturas: Asignatura[] = [];
       asignaturas.push(this.obtenerAsignaturaAleatoria());
       this.diasAsignaturas.set(dia, asignaturas);
     });
-    return diasClases;
+    console.log("Vamos a ver todo");
+    console.log(diaClases);
+    return diaClases;
   }
   private obtenerAsignaturaAleatoria(): Asignatura {
     let abreviaturas = Array.from(this.getAsignaturas().keys());

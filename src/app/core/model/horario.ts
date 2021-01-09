@@ -5,11 +5,12 @@ export class Horario {
   constructor(
     private _diasSemana: string[],
     private _tramoHorario: string[],
-    private _diasClases: Map<String, Map<String, Asignatura[]>>
+    private _diasAsignaturas: Map<String, Map<String, Asignatura[]>>
   ) {
     this._diasSemana.forEach((dia) => {
       this._cabecera.push(dia);
     });
+    // console.log("DiasAsignaturas:");
   }
   get diasSemana() {
     return this._diasSemana;
@@ -20,8 +21,7 @@ export class Horario {
   get cabecera() {
     return this._cabecera;
   }
-
-  get diasClases() {
-    return this._diasClases;
+  get diasAsignaturas() {
+    return this._diasAsignaturas;
   }
 }
