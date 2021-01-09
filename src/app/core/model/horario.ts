@@ -10,7 +10,6 @@ export class Horario {
     this._diasSemana.forEach((dia) => {
       this._cabecera.push(dia);
     });
-    // console.log("DiasAsignaturas:");
   }
   get diasSemana() {
     return this._diasSemana;

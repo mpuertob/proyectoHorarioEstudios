@@ -137,8 +137,6 @@ export class DatosMockService implements Datos {
       asignaturas.push(this.obtenerAsignaturaAleatoria());
       this.diasAsignaturas.set(dia, asignaturas);
     });
-    console.log("Vamos a ver todo");
-    console.log(diaClases);
     return diaClases;
   }
   private obtenerAsignaturaAleatoria(): Asignatura {
