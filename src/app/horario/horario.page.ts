@@ -22,7 +22,6 @@ export class HorarioPage implements OnInit {
     this.rutaActivada.queryParams.subscribe(() => {
       this.grupoHorario = this.route.getCurrentNavigation().extras.state.grupoPulsado;
     });
-    console.log(this.datosMock.getDiasClases());
     this.horario = new Horario(
       this.datosMock.getTramoHorarios(),
       this.datosMock.getDiasClases()
