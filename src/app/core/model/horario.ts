@@ -2,6 +2,7 @@ import { Asignatura } from "./asignatura";
 
 export class Horario {
   private _cabecera: String[] = ["HORA"];
+  private _count: number = 0;
   constructor(
     private _tramoHorario: string[],
     private _diasClases: Map<String, Map<String, Asignatura[]>>
@@ -21,17 +22,17 @@ export class Horario {
     return this._diasClases;
   }
   obtenerAsingnaturaConcreta(hora: String): String {
-    console.log("Lunes");
-
-    console.log(this._diasClases.get("LUNES"));
-    console.log("En la hora: " + hora);
-    console.log(this._diasClases.get("LUNES").get(hora));
-    // let asignatura: Asignatura = this._diasClases.get("LUNES").get(hora)[0];
-    let asignatura: Asignatura[] = this._diasClases.get("LUNES").get(hora);
+    if (this._count == 5) {
+      this._count = 0;
+    }
+    let array: Array<String> = Array.from(this._diasClases.keys());
+    let dia: String = array[this._count];
+    let asignatura: Asignatura[] = this._diasClases.get(dia).get(hora);
     let abreviatura: String = "RECREO";
     if (asignatura && asignatura.length > 0) {
       abreviatura = asignatura[0].abreviatura;
     }
+    this._count++;
     return abreviatura;
   }
 }

@@ -141,7 +141,10 @@ export class DatosMockService implements Datos {
   }
   private obtenerAsignaturaAleatoria(): Asignatura {
     let abreviaturas = Array.from(this.getAsignaturas().keys());
-    let aleatorio: number = this.obtenerNumeroAleatorio(0, abreviaturas.length);
+    let aleatorio: number = this.obtenerNumeroAleatorio(
+      0,
+      abreviaturas.length - 1
+    );
     return this.asignaturas.get(abreviaturas[aleatorio]);
   }
   private obtenerNumeroAleatorio(min: number, max: number): number {
