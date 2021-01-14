@@ -1,5 +1,7 @@
 {
   "name": "proyectoHorarioEstudios",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

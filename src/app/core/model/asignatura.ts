@@ -22,4 +22,7 @@ export class Asignatura {
   public set nombreCompleto(value: String) {
     this._nombreCompleto = value;
   }
+  toString() {
+    return this.abreviatura;
+  }
 }
