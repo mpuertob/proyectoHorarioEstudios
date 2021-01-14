@@ -22,7 +22,7 @@ export class Horario {
   get diasClases() {
     return this._diasClases;
   }
-  obtenerAsingnaturaConcreta(hora: String): String {
+  obtenerAsignatura(hora: String): String {
     if (this._count == 5) {
       this._count = 0;
     }

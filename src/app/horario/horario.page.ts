@@ -16,15 +16,23 @@ export class HorarioPage implements OnInit {
     public route: Router,
     private rutaActivada: ActivatedRoute,
     private datosMock: DatosMockService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.rutaActivada.queryParams.subscribe(() => {
       this.grupoHorario = this.route.getCurrentNavigation().extras.state.grupoPulsado;
     });
     this.horario = new Horario(
       this.datosMock.getTramoHorarios(),
       this.datosMock.getDiasClases()
+    );
+  }
+
+  ngOnInit() {}
+  obtenerAsignatura(hora: String) {
+    return this.horario.obtenerAsignatura(hora);
+  }
+  obtenerNombreCompleto(abreviatura) {
+    alert(
+      "NombreCompleto: " + this.datosMock.obtenerNombreCompleto(abreviatura)
     );
   }
 }

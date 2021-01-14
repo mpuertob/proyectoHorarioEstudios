@@ -150,4 +150,9 @@ export class DatosMockService implements Datos {
   private obtenerNumeroAleatorio(min: number, max: number): number {
     return Number((Math.random() * (max - min) + min).toFixed(0));
   }
+
+  obtenerNombreCompleto(abreviatura: String): String {
+    let asignatura: Asignatura = this.asignaturas.get(abreviatura);
+    return asignatura.nombreCompleto;
+  }
 }
