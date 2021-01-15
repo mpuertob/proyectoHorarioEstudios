@@ -20,6 +20,9 @@
     <pre style='display:inline'>&#09;</pre>
     <pre style='display:inline'>&#09;</pre>
 
+    <ion-col (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,0))">
+      {{obtenerAsignatura(hora)}}
+    </ion-col>
     <ion-col (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,1))">
       {{obtenerAsignatura(hora)}}
     </ion-col>
@@ -30,9 +33,6 @@
       {{obtenerAsignatura(hora)}}
     </ion-col>
     <ion-col (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,4))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,5))">
       {{obtenerAsignatura(hora)}}
     </ion-col>
 
