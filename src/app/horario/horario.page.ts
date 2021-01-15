@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Asignatura } from "../core/model/asignatura";
 import { Horario } from "../core/model/horario";
 import { DatosMockService } from "../share/datos-mock.service";
 
@@ -27,9 +28,24 @@ export class HorarioPage implements OnInit {
 
   ngOnInit() {}
   obtenerAsignatura(hora: String) {
-    return this.horario.obtenerAsignatura(hora);
+    let problema = this.horario.obtenerAsignatura(hora);
+    return problema;
   }
-  obtenerNombreCompleto(abreviatura) {
-    alert(this.datosMock.obtenerNombreCompleto(abreviatura));
+  obtenerAsignaturasConcretas(hora: String, numero: number) {
+    let problema: Asignatura[] = this.horario.obtenerAsignaturasConcretas(
+      hora,
+      numero
+    );
+
+    return problema;
+  }
+  obtenerNombreCompleto(asignaturas: Asignatura[]) {
+    if (asignaturas != undefined) {
+      asignaturas.forEach((asignatura: Asignatura) => {
+        alert(asignatura.nombreCompleto);
+      });
+    } else {
+      alert("RECREO");
+    }
   }
 }

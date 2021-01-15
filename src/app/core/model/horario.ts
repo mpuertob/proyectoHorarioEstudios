@@ -36,4 +36,10 @@ export class Horario {
     this._count++;
     return abreviatura;
   }
+  obtenerAsignaturasConcretas(hora: String, numero: number): Asignatura[] {
+    let array: Array<String> = Array.from(this._diasClases.keys());
+    let dia = array[numero - 1];
+    let asignaturas: Asignatura[] = this._diasClases.get(dia).get(hora);
+    return asignaturas;
+  }
 }
