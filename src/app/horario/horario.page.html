@@ -19,7 +19,7 @@
   <ion-row *ngFor="let hora of horario.tramoHorario">{{hora}}
     <pre style='display:inline'>&#09;</pre>
     <pre style='display:inline'>&#09;</pre>
-    <!-- Aqui seria lo suyo tener arrays con cada asignatura de cada dia que le toque a esa hora en concreto -->
+
     <ion-col (click)="obtenerNombreCompleto(obtenerAsignatura(hora))">
       {{obtenerAsignatura(hora)}}
     </ion-col>
