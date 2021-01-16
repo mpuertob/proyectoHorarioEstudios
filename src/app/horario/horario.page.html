@@ -16,9 +16,11 @@
     </ion-col>
 
   </ion-row>
-  <ion-row class="tabla" *ngFor="let hora of horario.tramoHorario">{{hora}}
+  <ion-row class="hora" *ngFor="let hora of horario.tramoHorario">
+    <!-- Para el movil quitar los dos pre style -->
     <pre style='display:inline'>&#09;</pre>
     <pre style='display:inline'>&#09;</pre>
+    {{hora}}
     <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,0))">
       {{obtenerAsignatura(hora)}}
     </ion-col>

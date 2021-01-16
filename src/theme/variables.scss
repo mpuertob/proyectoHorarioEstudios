@@ -4,9 +4,19 @@
 /** Ionic CSS Variables **/
 .tabla {
   border-style: solid;
+  text-align: center;
   font-size: 18px;
   border-width: 1px;
   background-color: #b0faf6;
+}
+.hora {
+  border-style: solid;
+  text-align: center;
+  font-size: 18px;
+  border-width: 1px;
+  background-color: #b0faf6;
+  // padding-left: 40px; Para movil
+  padding-left: 21px;
 }
 :root {
   /** primary **/
