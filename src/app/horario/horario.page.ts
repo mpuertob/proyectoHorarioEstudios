@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ToastController } from "@ionic/angular";
 import { Asignatura } from "../core/model/asignatura";
 import { Horario } from "../core/model/horario";
 import { DatosMockService } from "../share/datos-mock.service";
@@ -15,7 +16,8 @@ export class HorarioPage implements OnInit {
   constructor(
     public route: Router,
     private rutaActivada: ActivatedRoute,
-    private datosMock: DatosMockService
+    private datosMock: DatosMockService,
+    public toast: ToastController
   ) {
     this.rutaActivada.queryParams.subscribe(() => {
       this.grupoHorario = this.route.getCurrentNavigation().extras.state.grupoPulsado;
@@ -39,12 +41,22 @@ export class HorarioPage implements OnInit {
 
     return problema;
   }
-  obtenerNombreCompleto(asignaturas: Asignatura[]) {
+  async obtenerNombreCompleto(asignaturas: Asignatura[]) {
     if (asignaturas != undefined) {
-      asignaturas.forEach((asignatura: Asignatura) => {
+      asignaturas.forEach(async (asignatura: Asignatura) => {
+        let toast = this.toast.create({
+          message: "Asignatura: " + asignatura.nombreCompleto,
+          duration: 2000,
+        });
+        (await toast).present();
         alert(asignatura.nombreCompleto);
       });
     } else {
+      let toast = this.toast.create({
+        message: "Libre: RECREO",
+        duration: 2000,
+      });
+      (await toast).present();
       alert("RECREO");
     }
   }
