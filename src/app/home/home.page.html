@@ -7,25 +7,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
-  <!-- <ion-list>
-    <ion-list-header>Lista de Estudios:</ion-list-header>
-    <ion-item button *ngFor="let estudio of estudios" (click)="pasarEstudio(estudio)">{{estudio}}</ion-item>
-  </ion-list> -->
+  <!-- <div>
+    <ion-button (click)="getHorario()">Horario</ion-button>
+  </div> -->
   <div>
     <ion-button (click)="getEstudios()">Estudios</ion-button>
   </div>
   <ion-list>
     <ion-list-header>Lista de Estudios:</ion-list-header>
-    <ion-item button *ngFor="let estudio of estudios" (click)="pasarEstudio(estudio)">{{estudio}}</ion-item>
+    <ion-item button *ngFor="let estudio of estudios" (click)="pasarEstudio(estudio)">{{estudio.nombre}}</ion-item>
   </ion-list>
-
-
-
-
-  <!-- <div>
-    <ion-button (click)="getHoras()">Horas</ion-button>
-  </div>
-  <div>
-    <ion-button (click)="getCursos()">Cursos</ion-button>
-  </div> -->
 </ion-content>

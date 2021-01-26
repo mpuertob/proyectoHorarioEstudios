@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
+import { Entidad } from "../core/model/estudio";
 import { DatosService } from "../share/datos.service";
 @Component({
   selector: "app-home",
@@ -8,16 +9,17 @@ import { DatosService } from "../share/datos.service";
   styleUrls: ["home.page.scss"],
 })
 export class HomePage {
-  estudios: String[];
+  estudios: Entidad[];
   constructor(
     private aler: AlertController,
     private route: Router,
     private datosService: DatosService
   ) {}
-  pasarEstudio(evento: string) {
+  pasarEstudio(evento: Entidad) {
+    alert("Vamos a pasar: " + evento.nombre);
     let extrasNavegacion: NavigationExtras = {
       state: {
-        estudio: evento,
+        estudio: evento.nombre,
       },
     };
     this.route.navigate(["grupos"], extrasNavegacion);
@@ -33,5 +35,9 @@ export class HomePage {
   getCursos() {
     alert("Primero");
     this.datosService.getCursos("GS");
+  }
+  getHorario() {
+    alert("Primero");
+    this.datosService.getHorario();
   }
 }

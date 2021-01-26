@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
+import { Entidad } from "../core/model/estudio";
 import { DatosService } from "../share/datos.service";
 @Component({
   selector: "app-grupos",
@@ -7,7 +8,7 @@ import { DatosService } from "../share/datos.service";
   styleUrls: ["./grupos.page.scss"],
 })
 export class GruposPage implements OnInit {
-  grupos: String[];
+  grupos: Entidad[];
   estudio: string;
   constructor(
     public route: Router,
