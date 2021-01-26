@@ -17,9 +17,10 @@ export class CopiaNativoService {
           this.sqlDbCopy
             .copy("Horario16.db", 0)
             .then(() => {
-              alert("Copia terminada");
+              resolve("Copia terminada");
             })
             .catch((error) => {
+              reject("");
               console.log("copia fallo al copiar");
               console.log("copia" + JSON.stringify(error));
             });

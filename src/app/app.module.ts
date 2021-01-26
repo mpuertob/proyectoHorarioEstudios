@@ -12,6 +12,7 @@ import { DatosMockService } from "./share/datos-mock.service";
 import { SqliteDbCopy } from "@ionic-native/sqlite-db-copy/ngx";
 import { SQLite } from "@ionic-native/sqlite/ngx";
 import { CopiaNativoService } from "./share/copia-nativo.service";
+import { DatosService } from "./share/datos.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { CopiaNativoService } from "./share/copia-nativo.service";
     StatusBar,
     SplashScreen,
     DatosMockService,
+    DatosService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SqliteDbCopy,
     CopiaNativoService,
