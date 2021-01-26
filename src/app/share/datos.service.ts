@@ -9,13 +9,17 @@ export class DatosService {
   private db: SQLiteObject;
   private horasList: any[] = [];
   private cursosList: any[] = [];
-  private estudiosList: any[] = [];
+  private estudiosList: String[] = [];
   constructor(
     private platform: Platform,
     private sqlite: SQLite,
     private copiaNativo: CopiaNativoService
   ) {}
-  executeSentence(target: any[], sqlSentence: string, searchParam: any[]) {
+  executeSentence(
+    target: any[],
+    sqlSentence: string,
+    searchParam: any[]
+  ): any[] {
     alert("Tercero");
     let consultable = true;
     new Promise((resolve, reject) => {
@@ -45,8 +49,9 @@ export class DatosService {
               alert("Quinto bien");
               for (let i = 0; i < data.rows.length; i++) {
                 let obj = data.rows.item(i);
+                console.log(obj);
                 alert(obj.nombre);
-                target.push(obj);
+                target.push(obj.nombre);
               }
               alert("Se ha realizado toda la consulta bien");
             })
@@ -59,6 +64,7 @@ export class DatosService {
       .catch((err) => {
         alert("fallo: " + JSON.stringify(err));
       });
+    return target;
   }
 
   getHoras() {
@@ -74,7 +80,7 @@ export class DatosService {
   }
   getEstudios() {
     const sql = "Select estudios.nombre as nombre from estudios";
-    this.executeSentence(this.estudiosList, sql, []);
+    return this.executeSentence(this.estudiosList, sql, []);
   }
   openDB(): Promise<any> {
     return new Promise((resolve, reject) => {
