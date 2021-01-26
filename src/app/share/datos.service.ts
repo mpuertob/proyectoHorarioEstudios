@@ -7,7 +7,7 @@ import { CopiaNativoService } from "./copia-nativo.service";
 })
 export class DatosService {
   private db: SQLiteObject;
-  private horasList: any[] = [];
+  private horasList: String[] = [];
   private cursosList: String[] = [];
   private estudiosList: String[] = [];
   constructor(
@@ -70,7 +70,7 @@ export class DatosService {
   getHoras() {
     alert("Segundo");
     const sql = "Select descripcion as nombre from horasSemana";
-    this.executeSentence(this.horasList, sql, []);
+    return this.executeSentence(this.horasList, sql, []);
   }
 
   getCursos(estudios) {
