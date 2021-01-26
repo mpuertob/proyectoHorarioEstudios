@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { DatosMockService } from "../share/datos-mock.service";
 import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
+import { DatosService } from "../share/datos.service";
 @Component({
   selector: "app-grupos",
   templateUrl: "./grupos.page.html",
@@ -12,10 +12,10 @@ export class GruposPage implements OnInit {
   constructor(
     public route: Router,
     private rutaActivada: ActivatedRoute,
-    private datosMock: DatosMockService
+    private datosService: DatosService
   ) {}
   private obtenerGrupos() {
-    this.grupos = this.datosMock.getGrupos(this.estudio);
+    this.grupos = this.datosService.getCursos(this.estudio);
   }
   ngOnInit() {
     this.rutaActivada.queryParams.subscribe(() => {

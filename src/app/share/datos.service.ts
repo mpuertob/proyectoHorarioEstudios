@@ -8,7 +8,7 @@ import { CopiaNativoService } from "./copia-nativo.service";
 export class DatosService {
   private db: SQLiteObject;
   private horasList: any[] = [];
-  private cursosList: any[] = [];
+  private cursosList: String[] = [];
   private estudiosList: String[] = [];
   constructor(
     private platform: Platform,
@@ -76,7 +76,7 @@ export class DatosService {
   getCursos(estudios) {
     const sql =
       "SELECT grupo.idGrupo as id, grupo.nombre FROM grupo INNER JOIN estudios ON grupo.idEstudios = estudios.idEstudios  WHERE estudios.nombre LIKE ?";
-    this.executeSentence(this.cursosList, sql, [estudios]);
+    return this.executeSentence(this.cursosList, sql, [estudios]);
   }
   getEstudios() {
     const sql = "Select estudios.nombre as nombre from estudios";
