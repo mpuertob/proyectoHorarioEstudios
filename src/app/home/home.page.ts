@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 import { Entidad } from "../core/model/estudio";
+import { HorarioBbdd } from "../core/model/horarioBbdd";
 import { DatosService } from "../share/datos.service";
 @Component({
   selector: "app-home",
@@ -10,11 +11,14 @@ import { DatosService } from "../share/datos.service";
 })
 export class HomePage {
   estudios: Entidad[];
+  horario: HorarioBbdd[];
   constructor(
     private aler: AlertController,
     private route: Router,
     private datosService: DatosService
-  ) {}
+  ) {
+    this.getEstudios();
+  }
   pasarEstudio(evento: Entidad) {
     alert("Vamos a pasar: " + evento.nombre);
     let extrasNavegacion: NavigationExtras = {
@@ -24,20 +28,8 @@ export class HomePage {
     };
     this.route.navigate(["grupos"], extrasNavegacion);
   }
-  getHoras() {
-    alert("Primero");
-    this.datosService.getHoras();
-  }
   getEstudios() {
     alert("Primero");
     this.estudios = this.datosService.getEstudios();
-  }
-  getCursos() {
-    alert("Primero");
-    this.datosService.getCursos("GS");
-  }
-  getHorario() {
-    alert("Primero");
-    this.datosService.getHorario();
   }
 }

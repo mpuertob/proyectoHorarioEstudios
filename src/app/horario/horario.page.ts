@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ToastController } from "@ionic/angular";
 import { Asignatura } from "../core/model/asignatura";
 import { Horario } from "../core/model/horario";
+import { HorarioBbdd } from "../core/model/horarioBbdd";
 import { DatosMockService } from "../share/datos-mock.service";
+import { DatosService } from "../share/datos.service";
 
 @Component({
   selector: "app-horario",
@@ -12,52 +14,19 @@ import { DatosMockService } from "../share/datos-mock.service";
 })
 export class HorarioPage implements OnInit {
   grupoHorario: String;
-  horario: Horario;
+  horario: HorarioBbdd[];
   constructor(
     public route: Router,
     private rutaActivada: ActivatedRoute,
-    private datosMock: DatosMockService,
-    public toast: ToastController
+    public toast: ToastController,
+    private datosService: DatosService
   ) {
     this.rutaActivada.queryParams.subscribe(() => {
       this.grupoHorario = this.route.getCurrentNavigation().extras.state.grupoPulsado;
     });
-    this.horario = new Horario(
-      this.datosMock.getTramoHorarios(),
-      this.datosMock.getDiasClases()
-    );
   }
-
+  getHorario() {
+    this.horario = this.datosService.getHorario(this.grupoHorario);
+  }
   ngOnInit() {}
-  obtenerAsignatura(hora: String) {
-    let problema = this.horario.obtenerAsignatura(hora);
-    return problema;
-  }
-  obtenerAsignaturasConcretas(hora: String, numero: number) {
-    let problema: Asignatura[] = this.horario.obtenerAsignaturasConcretas(
-      hora,
-      numero
-    );
-
-    return problema;
-  }
-  async obtenerNombreCompleto(asignaturas: Asignatura[]) {
-    if (asignaturas != undefined) {
-      asignaturas.forEach(async (asignatura: Asignatura) => {
-        let toast = this.toast.create({
-          message: "Asignatura: " + asignatura.nombreCompleto,
-          duration: 2000,
-        });
-        (await toast).present();
-        alert(asignatura.nombreCompleto);
-      });
-    } else {
-      let toast = this.toast.create({
-        message: "Libre: RECREO",
-        duration: 2000,
-      });
-      (await toast).present();
-      alert("RECREO");
-    }
-  }
 }

@@ -10,32 +10,12 @@
 
 <ion-content>
 
-  <ion-row class="tabla">
-    <ion-col class="tabla" *ngFor="let item of horario.cabecera">
-      {{item}}
-    </ion-col>
+  <ion-list>
+    <div>
+      <ion-button (click)="getHorario()">Horario</ion-button>
+    </div>
+    <ion-list-header>Lista de Horario:</ion-list-header>
+    <ion-item button *ngFor="let dia of horario">{{dia.dia}}-{{dia.hora}}-{{dia.materiaAbreviatura}}</ion-item>
+  </ion-list>
 
-  </ion-row>
-  <ion-row class="hora" *ngFor="let hora of horario.tramoHorario">
-    <!-- Para el movil quitar los dos pre style -->
-    <pre style='display:inline'>&#09;</pre>
-    <pre style='display:inline'>&#09;</pre>
-    {{hora}}
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,0))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,1))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,2))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,3))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,4))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-
-  </ion-row>
 </ion-content>

@@ -10,7 +10,7 @@ export class DatosService {
   private horasList: String[] = [];
   private cursosList: String[] = [];
   private estudiosList: String[] = [];
-  private horarioList: any[] = [];
+  private horarioList: String[] = [];
   constructor(
     private platform: Platform,
     private sqlite: SQLite,
@@ -51,7 +51,6 @@ export class DatosService {
               for (let i = 0; i < data.rows.length; i++) {
                 let obj = data.rows.item(i);
                 console.log(obj);
-                alert(obj.nombre);
                 target.push(obj);
               }
               alert("Se ha realizado toda la consulta bien");
@@ -83,10 +82,10 @@ export class DatosService {
     const sql = "Select estudios.nombre as nombre from estudios";
     return this.executeSentence(this.estudiosList, sql, []);
   }
-  getHorario() {
+  getHorario(grupo: String) {
     const sql =
-      "select diaSemana.nombre as dia, horasSemana.descripcion as hora, materia.nombre as materiaAbreviatura from horasSemana, diaClase, materiahoraclase, horaClase, materia, diaSemana, grupo, estudios where grupo.nombre LIKE '1b' and diaSemana.idDiaSemana==diaClase.idDiaSemana and diaclase.idGrupo==grupo.idGrupo and horaclase.idDiaClase==diaclase.idDiaClase and horaclase.idHorasSemana==horassemana.idHorasSemana and materiahoraclase.idHoraClase==horaclase.idHoraClase and materiahoraclase.idMateria==materia.idMateria group by horaClase.idHorasSemana, horaClase.idDiaClase, horaClase.idHoraClase";
-    return this.executeSentence(this.horarioList, sql, []);
+      "select diaSemana.nombre as dia, horasSemana.descripcion as hora, materia.nombre as materiaAbreviatura from horasSemana, diaClase, materiahoraclase, horaClase, materia, diaSemana, grupo, estudios where grupo.nombre LIKE ? and diaSemana.idDiaSemana==diaClase.idDiaSemana and diaclase.idGrupo==grupo.idGrupo and horaclase.idDiaClase==diaclase.idDiaClase and horaclase.idHorasSemana==horassemana.idHorasSemana and materiahoraclase.idHoraClase==horaclase.idHoraClase and materiahoraclase.idMateria==materia.idMateria group by horaClase.idHorasSemana, horaClase.idDiaClase, horaClase.idHoraClase";
+    return this.executeSentence(this.horarioList, sql, [grupo]);
   }
   openDB(): Promise<any> {
     return new Promise((resolve, reject) => {
