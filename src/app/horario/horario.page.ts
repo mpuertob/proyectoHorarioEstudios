@@ -15,6 +15,8 @@ export class HorarioPage implements OnInit {
   cabecera: Set<String> = new Set<String>();
   horasSinRepetir: Set<String> = new Set<String>();
   abreviaturas: String[] = [];
+  count: number = 0;
+
   constructor(
     public route: Router,
     private rutaActivada: ActivatedRoute,
@@ -29,16 +31,19 @@ export class HorarioPage implements OnInit {
 
   mostrarHorario() {
     this.cabecera.add("HORAS");
-    alert("tamaño horario " + this.horario.length);
     this.horario.map((obj: HorarioBbdd) => {
       this.cabecera.add(obj.dia);
       this.horasSinRepetir.add(obj.hora);
       this.abreviaturas.push(obj.materiaAbreviatura);
     });
-    alert("Tamaño dias sin repetir " + this.cabecera.size);
-    alert("Tamaño horas sin repetir " + this.horasSinRepetir.size);
-    alert("Tamaño abreviaturas sin repetir " + this.abreviaturas.length);
   }
-
+  async getNombreAsignatura(abreviatura: String) {
+    let nombre = this.datosService.getNombreAsignatura(abreviatura);
+    let toast = this.toast.create({
+      message: "Asignatura: " + nombre,
+      duration: 3000,
+    });
+    (await toast).present();
+  }
   ngOnInit() {}
 }

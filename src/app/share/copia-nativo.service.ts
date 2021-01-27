@@ -9,11 +9,9 @@ export class CopiaNativoService {
 
   async copiarBBDD(): Promise<any> {
     return new Promise((resolve, reject) => {
-      alert("Copia comenzando");
       this.platform
         .ready()
         .then(() => {
-          alert("copia la plataforma SI está lista");
           this.sqlDbCopy
             .copy("Horario16.db", 0)
             .then(() => {
@@ -21,13 +19,10 @@ export class CopiaNativoService {
             })
             .catch((error) => {
               reject("");
-              console.log("copia fallo al copiar");
               console.log("copia" + JSON.stringify(error));
             });
         })
-        .catch(() => {
-          alert("copia la plataforma NO está lista");
-        });
+        .catch(() => {});
     });
   }
 }

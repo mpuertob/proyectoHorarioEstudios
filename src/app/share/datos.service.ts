@@ -11,6 +11,7 @@ export class DatosService {
   private cursosList: String[] = [];
   private estudiosList: String[] = [];
   private horarioList: String[] = [];
+  private abreviatura: String[] = [];
   constructor(
     private platform: Platform,
     private sqlite: SQLite,
@@ -27,7 +28,6 @@ export class DatosService {
       if (!this.db) {
         this.openDB()
           .then(() => {
-            alert(this.db);
             resolve(consultable);
           })
           .catch(() => {
@@ -49,19 +49,14 @@ export class DatosService {
               }
               alert("Se ha realizado toda la consulta bien");
             })
-            .catch((e) => {
-              alert("fallo al ejecutar sentencia " + JSON.stringify(e));
-            });
+            .catch((e) => {});
         }
       })
-      .catch((err) => {
-        alert("fallo: " + JSON.stringify(err));
-      });
+      .catch((err) => {});
     return target;
   }
 
   getHoras() {
-    alert("Segundo");
     const sql = "Select descripcion as nombre from horasSemana";
     return this.executeSentence(this.horasList, sql, []);
   }
@@ -80,6 +75,13 @@ export class DatosService {
       "select diaSemana.nombre as dia, horasSemana.descripcion as hora, materia.nombre as materiaAbreviatura from horasSemana, diaClase, materiahoraclase, horaClase, materia, diaSemana, grupo, estudios where grupo.nombre LIKE ? and diaSemana.idDiaSemana==diaClase.idDiaSemana and diaclase.idGrupo==grupo.idGrupo and horaclase.idDiaClase==diaclase.idDiaClase and horaclase.idHorasSemana==horassemana.idHorasSemana and materiahoraclase.idHoraClase==horaclase.idHoraClase and materiahoraclase.idMateria==materia.idMateria group by horaClase.idHorasSemana, horaClase.idDiaClase, horaClase.idHoraClase";
     return this.executeSentence(this.horarioList, sql, [grupo]);
   }
+  getNombreAsignatura(abreviatura: String): String {
+    const sql =
+      "select materia.completo from materia where materia.nombre like ?";
+
+    return this.executeSentence(this.abreviatura, sql, [abreviatura])[0]
+      .completo;
+  }
   openDB(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.platform
@@ -96,7 +98,6 @@ export class DatosService {
                   resolve("BBDD preparada");
                 })
                 .catch((err) => {
-                  alert(err);
                   reject("Error en la preparación de la bbdd: " + err);
                 });
             })

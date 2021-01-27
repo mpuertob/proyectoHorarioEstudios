@@ -20,7 +20,6 @@ export class HomePage {
     this.getEstudios();
   }
   pasarEstudio(evento: Entidad) {
-    alert("Vamos a pasar: " + evento.nombre);
     let extrasNavegacion: NavigationExtras = {
       state: {
         estudio: evento.nombre,
@@ -29,7 +28,6 @@ export class HomePage {
     this.route.navigate(["grupos"], extrasNavegacion);
   }
   getEstudios() {
-    alert("Primero");
     this.estudios = this.datosService.getEstudios();
   }
 }
