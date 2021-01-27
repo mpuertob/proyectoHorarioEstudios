@@ -21,20 +21,16 @@ export class DatosService {
     sqlSentence: string,
     searchParam: any[]
   ): any[] {
-    alert("Tercero");
     let consultable = true;
     new Promise((resolve, reject) => {
       console.log(this.db);
       if (!this.db) {
         this.openDB()
           .then(() => {
-            alert("Cuarto, procedemos a abrir la bbdd");
             alert(this.db);
             resolve(consultable);
           })
           .catch(() => {
-            alert("Cuarto, porque ha fallado el abrir la bbdd");
-            alert("Fallo en abrir la base de dato cuando no estaba abierta");
             consultable = false;
             reject(consultable);
           });
@@ -47,16 +43,13 @@ export class DatosService {
           this.db
             .executeSql(sqlSentence, searchParam)
             .then((data) => {
-              alert("Quinto bien");
               for (let i = 0; i < data.rows.length; i++) {
                 let obj = data.rows.item(i);
-                console.log(obj);
                 target.push(obj);
               }
               alert("Se ha realizado toda la consulta bien");
             })
             .catch((e) => {
-              alert("Quinto Mal");
               alert("fallo al ejecutar sentencia " + JSON.stringify(e));
             });
         }
@@ -95,7 +88,6 @@ export class DatosService {
           this.copiaNativo
             .copiarBBDD()
             .then(() => {
-              alert("BBDD copiada correctamente procedemos abrir");
               this.sqlite
                 //si la bbdd no existe la crea y la abre y si existe la abre
                 .create(this.getConector())
@@ -114,6 +106,7 @@ export class DatosService {
         .catch();
     });
   }
+
   private getConector() {
     return {
       name: "Horario16.db",

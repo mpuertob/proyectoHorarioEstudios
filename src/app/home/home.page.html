@@ -7,9 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
-  <div>
-    <ion-button (click)="getEstudios()">Estudios</ion-button>
-  </div>
+
   <ion-list>
     <ion-list-header>Lista de Estudios:</ion-list-header>
     <ion-item button *ngFor="let estudio of estudios" (click)="pasarEstudio(estudio)">{{estudio.nombre}}</ion-item>
