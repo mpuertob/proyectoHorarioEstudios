@@ -13,7 +13,6 @@
   <ion-button (click)="mostrarHorario()">
     Mostrar Horario
   </ion-button>
-  <!-- ------------------------------------ -->
   <ion-grid>
     <ion-row class="maquetadora">
       <ion-col class="maquetadora" *ngFor="let dia of cabecera">
@@ -24,20 +23,8 @@
       <ion-col class="maquetadora" size="2">
         <div>{{hora}}</div>
       </ion-col>
-      <ion-col class="maquetadora" size="2">
-        asignatura
-      </ion-col>
-      <ion-col class="maquetadora" size="2">
-        asignatura
-      </ion-col>
-      <ion-col class="maquetadora" size="2">
-        asignatura
-      </ion-col>
-      <ion-col class="maquetadora" size="2">
-        asignatura
-      </ion-col>
-      <ion-col class="maquetadora" size="2">
-        asignatura
+      <ion-col class="maquetadora" size="2" *ngFor="let abr of getAbreviaturas(hora)">
+        {{abr}}
       </ion-col>
     </ion-row>
   </ion-grid>
