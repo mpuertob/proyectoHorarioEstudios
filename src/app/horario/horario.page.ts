@@ -15,7 +15,6 @@ export class HorarioPage implements OnInit {
   cabecera: Set<String> = new Set<String>();
   horasSinRepetir: Set<String> = new Set<String>();
   abreviaturas: String[] = [];
-  count: number = 0;
 
   constructor(
     public route: Router,
@@ -36,6 +35,7 @@ export class HorarioPage implements OnInit {
       this.horasSinRepetir.add(obj.hora);
       this.abreviaturas.push(obj.materiaAbreviatura);
     });
+    console.log(this.horario);
   }
   async getNombreAsignatura(abreviatura: String) {
     let nombre = this.datosService.getNombreAsignatura(abreviatura);
