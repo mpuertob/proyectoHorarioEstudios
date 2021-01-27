@@ -9,33 +9,35 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row class="maquetadora">
+      <ion-col class="maquetadora" *ngFor="let item of horario.cabecera">
+        <div>{{item}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="maquetadora" *ngFor="let hora of horario.tramoHorario">
+      <ion-col class="maquetadora" size="2">
+        <div>{{hora}}</div>
+      </ion-col>
 
-  <ion-row class="tabla">
-    <ion-col class="tabla" *ngFor="let item of horario.cabecera">
-      {{item}}
-    </ion-col>
-
-  </ion-row>
-  <ion-row class="hora" *ngFor="let hora of horario.tramoHorario">
-    <!-- Para el movil quitar los dos pre style -->
-    <pre style='display:inline'>&#09;</pre>
-    <pre style='display:inline'>&#09;</pre>
-    {{hora}}
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,0))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,1))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,2))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,3))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-    <ion-col class="tabla" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,4))">
-      {{obtenerAsignatura(hora)}}
-    </ion-col>
-
-  </ion-row>
+      <ion-col class="maquetadora" size="2" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,0))">
+        {{obtenerAsignatura(hora)}}
+      </ion-col>
+      <ion-col class="maquetadora" size="2" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,1))">
+        {{obtenerAsignatura(hora)}}
+      </ion-col>
+      <ion-col class="maquetadora" size="2" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,2))">
+        {{obtenerAsignatura(hora)}}
+      </ion-col>
+      <ion-col class="maquetadora" size="2" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,3))">
+        {{obtenerAsignatura(hora)}}
+      </ion-col>
+      <ion-col class="maquetadora" size="2" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,4))">
+        {{obtenerAsignatura(hora)}}
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="maquetadora" *ngFor="let abr of abreviaturas">
+        {{abr}}
+      </ion-row> -->
+  </ion-grid>
 </ion-content>
