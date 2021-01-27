@@ -45,6 +45,7 @@ export class DatosService {
             .then((data) => {
               for (let i = 0; i < data.rows.length; i++) {
                 let obj = data.rows.item(i);
+                console.log(obj);
                 target.push(obj);
               }
               alert("Se ha realizado toda la consulta bien");
@@ -75,12 +76,12 @@ export class DatosService {
       "select diaSemana.nombre as dia, horasSemana.descripcion as hora, materia.nombre as materiaAbreviatura from horasSemana, diaClase, materiahoraclase, horaClase, materia, diaSemana, grupo, estudios where grupo.nombre LIKE ? and diaSemana.idDiaSemana==diaClase.idDiaSemana and diaclase.idGrupo==grupo.idGrupo and horaclase.idDiaClase==diaclase.idDiaClase and horaclase.idHorasSemana==horassemana.idHorasSemana and materiahoraclase.idHoraClase==horaclase.idHoraClase and materiahoraclase.idMateria==materia.idMateria group by horaClase.idHorasSemana, horaClase.idDiaClase, horaClase.idHoraClase";
     return this.executeSentence(this.horarioList, sql, [grupo]);
   }
-  getNombreAsignatura(abreviatura: String): String {
+  getNombreAsignatura(abr: String): String {
+    this.abreviatura = [];
     const sql =
       "select materia.completo from materia where materia.nombre like ?";
 
-    return this.executeSentence(this.abreviatura, sql, [abreviatura])[0]
-      .completo;
+    return this.executeSentence(this.abreviatura, sql, [abr])[0].completo;
   }
   openDB(): Promise<any> {
     return new Promise((resolve, reject) => {

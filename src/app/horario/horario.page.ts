@@ -16,7 +16,7 @@ export class HorarioPage implements OnInit {
   cabecera: Set<String> = new Set<String>();
   horasSinRepetir: Set<String> = new Set<String>();
   abreviaturas: String[] = [];
-
+  mostrar: Boolean = true;
   constructor(
     public route: Router,
     private rutaActivada: ActivatedRoute,
@@ -30,6 +30,7 @@ export class HorarioPage implements OnInit {
   }
 
   mostrarHorario() {
+    this.mostrar = false;
     this.cabecera.add("HORAS");
     this.horario.map((obj: HorarioBbdd) => {
       this.cabecera.add(obj.dia);
@@ -60,6 +61,7 @@ export class HorarioPage implements OnInit {
     return abreviaturas;
   }
   async getNombreAsignatura(abreviatura: String) {
+    alert(abreviatura);
     let nombre = this.datosService.getNombreAsignatura(abreviatura);
     let toast = this.toast.create({
       message: "Asignatura: " + nombre,
