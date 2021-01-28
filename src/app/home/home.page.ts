@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 import { Entidad } from "../core/model/estudio";
-import { HorarioBbdd } from "../core/model/horarioBbdd";
+import { Horario } from "../core/model/horario";
 import { DatosService } from "../share/datos.service";
 @Component({
   selector: "app-home",
@@ -11,7 +11,7 @@ import { DatosService } from "../share/datos.service";
 })
 export class HomePage {
   estudios: Entidad[];
-  horario: HorarioBbdd[];
+  horario: Horario[];
   constructor(
     private aler: AlertController,
     private route: Router,

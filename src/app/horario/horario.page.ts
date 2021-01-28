@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastController } from "@ionic/angular";
-import { HorarioBbdd } from "../core/model/horarioBbdd";
+import { Horario } from "../core/model/horario";
 import { DatosService } from "../share/datos.service";
 
 @Component({
@@ -11,8 +11,8 @@ import { DatosService } from "../share/datos.service";
 })
 export class HorarioPage implements OnInit {
   grupoHorario: String;
-  horario: HorarioBbdd[] = [];
-  horarioOrdenadorPorHora: HorarioBbdd[] = [];
+  horario: Horario[] = [];
+  horarioOrdenadorPorHora: Horario[] = [];
   cabecera: Set<String> = new Set<String>();
   horasSinRepetir: Set<String> = new Set<String>();
   abreviaturas: String[] = [];
@@ -32,7 +32,7 @@ export class HorarioPage implements OnInit {
   mostrarHorario() {
     this.mostrar = false;
     this.cabecera.add("HORAS");
-    this.horario.map((obj: HorarioBbdd) => {
+    this.horario.map((obj: Horario) => {
       this.cabecera.add(obj.dia);
       this.horasSinRepetir.add(obj.hora);
       this.abreviaturas.push(obj.materiaAbreviatura);
@@ -40,7 +40,7 @@ export class HorarioPage implements OnInit {
     console.log(this.horario);
     let array = Array.from(this.horasSinRepetir);
     do {
-      this.horario.map((obj: HorarioBbdd) => {
+      this.horario.map((obj: Horario) => {
         if (obj.hora === array[0]) {
           this.horarioOrdenadorPorHora.push(obj);
         }
@@ -53,7 +53,7 @@ export class HorarioPage implements OnInit {
   }
   getAbreviaturas(hora: String): String[] {
     let abreviaturas: String[] = [];
-    this.horarioOrdenadorPorHora.forEach((obj: HorarioBbdd) => {
+    this.horarioOrdenadorPorHora.forEach((obj: Horario) => {
       if (obj.hora === hora) {
         abreviaturas.push(obj.materiaAbreviatura);
       }

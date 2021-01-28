@@ -2,9 +2,22 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
-.maquetadora{
-   border-style: solid;
-   border-width: 1px;
+.cabecera {
+  border-style: solid;
+  border-width: 2px;
+  text-align: center;
+  background-color: #fda3a3;
+  box-shadow: 0 8px 32px 0 rgba(255, 12, 243, 0.363);
+  font-size: large;
+}
+
+.horario {
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+  background-color: #b8ff98;
+  box-shadow: 0 8px 32px 0 rgba(255, 12, 243, 0.363);
+  font-size: large;
 }
 :root {
   /** primary **/

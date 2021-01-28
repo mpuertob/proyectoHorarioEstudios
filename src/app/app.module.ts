@@ -8,7 +8,6 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { DatosMockService } from "./share/datos-mock.service";
 import { SqliteDbCopy } from "@ionic-native/sqlite-db-copy/ngx";
 import { SQLite } from "@ionic-native/sqlite/ngx";
 import { CopiaNativoService } from "./share/copia-nativo.service";
@@ -21,7 +20,6 @@ import { DatosService } from "./share/datos.service";
   providers: [
     StatusBar,
     SplashScreen,
-    DatosMockService,
     DatosService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SqliteDbCopy,
