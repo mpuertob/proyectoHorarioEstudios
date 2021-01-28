@@ -2,10 +2,19 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
-.maquetadora {
+.cabecera {
+  border-style: solid;
+  border-width: 2px;
+  text-align: center;
+  background-color: #d9bffc;
+  font-size: xx-large;
+}
+.horario {
   border-style: solid;
   border-width: 1px;
   text-align: center;
+  background-color: #bcfd9e;
+    font-size: large;
 }
 :root {
   /** primary **/
