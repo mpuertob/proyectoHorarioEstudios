@@ -17,7 +17,10 @@
     </ion-row>
     <ion-row class="horario" *ngFor="let hora of horario.tramoHorario">
       <ion-col class="horario" size="2">
-        <div>{{hora}}</div>
+        <div>
+          <ion-icon name="time-outline"></ion-icon>
+          {{hora}}
+        </div>
       </ion-col>
 
       <ion-col class="horario" size="2" (click)="obtenerNombreCompleto(obtenerAsignaturasConcretas(hora,0))">

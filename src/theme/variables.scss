@@ -6,16 +6,27 @@
   border-style: solid;
   border-width: 2px;
   text-align: center;
-  background-color: #d9bffc;
+  background-color: #fda3a3;
   font-size: xx-large;
 }
 .horario {
   border-style: solid;
   border-width: 1px;
   text-align: center;
-  background-color: #bcfd9e;
+  background-color: #b8ff98;
+   box-shadow: 0 8px 32px 0 rgba(255, 12, 243, 0.363);
     font-size: large;
 }
+// .horario {
+//   border-style: solid;
+//   border-width: 1px;
+//   text-align: center;
+//   font-size: large;
+//   background: rgba(192, 250, 153, 0.25);
+//   box-shadow: 0 8px 32px 0 rgba(162, 84, 252, 0.842);
+//   backdrop-filter: blur(4px);
+//   height: auto;
+// }
 :root {
   /** primary **/
   --ion-color-primary: #3880ff;
