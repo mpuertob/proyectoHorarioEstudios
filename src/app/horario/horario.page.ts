@@ -49,7 +49,6 @@ export class HorarioPage implements OnInit {
           duration: 2000,
         });
         (await toast).present();
-        alert(asignatura.nombreCompleto);
       });
     } else {
       let toast = this.toast.create({
@@ -57,7 +56,6 @@ export class HorarioPage implements OnInit {
         duration: 2000,
       });
       (await toast).present();
-      alert("RECREO");
     }
   }
 }
