@@ -1,6 +1,6 @@
 import { SQLite, SQLiteObject } from "@ionic-native/sqlite/ngx";
-import { rejects } from "assert";
 import { DatosMockService } from "../../src/app/share/datos-mock.service";
+import { CONSULTAS } from "./enum_consultas";
 export interface SQLiteDatabaseConfig {
   /**
    * Name of the database. Example: 'my.db'
@@ -78,25 +78,25 @@ export class SQliteMockObject extends SQLiteObject {
     let datosMockService = new DatosMockService();
     return new Promise((resolve, reject) => {
       switch (statement) {
-        case "getEstudios":
+        case CONSULTAS.getEstudios:
           resolve(datosMockService.getEstudios());
           break;
-        case "getGrupos":
+        case CONSULTAS.getGrupos:
           resolve(datosMockService.getGrupos(params[0]));
           break;
-        case "getDiasSemana":
+        case CONSULTAS.getDiasSemana:
           resolve(datosMockService.getDiasSemana());
           break;
-        case "getTramoHorarios":
+        case CONSULTAS.getTramoHorarios:
           resolve(datosMockService.getTramoHorarios());
           break;
-        case "getAsignaturas":
+        case CONSULTAS.getAsignaturas:
           resolve(datosMockService.getAsignaturas());
           break;
-        case "getDiasClases":
+        case CONSULTAS.getDiasClases:
           resolve(datosMockService.getDiasClases());
           break;
-        case "obtenerNombreCompleto":
+        case CONSULTAS.getNombreCompleto:
           resolve(
             datosMockService.obtenerNombreCompleto("abreviatura: String")
           );
