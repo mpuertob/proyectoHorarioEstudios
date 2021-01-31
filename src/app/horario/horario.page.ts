@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ToastController } from "@ionic/angular";
+import { SqliteDbCopy } from "@ionic-native/sqlite-db-copy/ngx";
+import { SQLite, SQLiteObject } from "@ionic-native/sqlite/ngx";
+import { Platform, ToastController } from "@ionic/angular";
 import { Asignatura } from "../core/model/asignatura";
 import { Horario } from "../core/model/horario";
-import { DatosMockService } from "../share/datos-mock.service";
 
 @Component({
   selector: "app-horario",
@@ -13,19 +14,59 @@ import { DatosMockService } from "../share/datos-mock.service";
 export class HorarioPage implements OnInit {
   grupoHorario: String;
   horario: Horario;
+  tramosHorarios: string[];
+  diasClases: Map<String, Map<String, Asignatura[]>>;
+
   constructor(
     public route: Router,
     private rutaActivada: ActivatedRoute,
-    private datosMock: DatosMockService,
-    public toast: ToastController
+    public toast: ToastController,
+    private platform: Platform,
+    private sqlite: SQLite,
+    private sqliteDBCopy: SqliteDbCopy,
+    private sqliteObject: SQLiteObject
   ) {
     this.rutaActivada.queryParams.subscribe(() => {
       this.grupoHorario = this.route.getCurrentNavigation().extras.state.grupoPulsado;
     });
-    this.horario = new Horario(
-      this.datosMock.getTramoHorarios(),
-      this.datosMock.getDiasClases()
-    );
+    this.platform
+      .ready()
+      .then(() => {
+        this.sqliteDBCopy
+          .copy("nombre", 0)
+          .then(() => {
+            this.sqlite
+              .create(this.getConector())
+              .then(() => {
+                this.sqliteObject
+                  .executeSql("getTramoHorarios", [])
+                  .then((tramosHorarios: string[]) => {
+                    this.tramosHorarios = tramosHorarios;
+                    this.sqliteObject
+                      .executeSql("getDiasClases", [])
+                      .then((dias) => {
+                        this.diasClases = dias;
+                        this.horario = new Horario(
+                          this.tramosHorarios,
+                          this.diasClases
+                        );
+                      });
+                  })
+                  .catch((err) => {
+                    alert("No se ha podido ejecutar la sentencia " + err);
+                  });
+              })
+              .catch((err) => {
+                alert("La bbdd no se ha creado " + err);
+              });
+          })
+          .catch((err) => {
+            alert("La bbdd no se ha copiado " + err);
+          });
+      })
+      .catch(() => {
+        alert("La plataforma no está lista");
+      });
   }
 
   ngOnInit() {}
@@ -57,5 +98,12 @@ export class HorarioPage implements OnInit {
       });
       (await toast).present();
     }
+  }
+  private getConector() {
+    return {
+      name: "Horario16e.db",
+      location: "default",
+      createFromLocation: 1,
+    };
   }
 }

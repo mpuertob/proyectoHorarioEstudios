@@ -11,7 +11,6 @@ export class Horario {
     diasSemana.forEach((dia) => {
       this._cabecera.push(dia);
     });
-    console.log(this._diasClases);
   }
   get tramoHorario() {
     return this._tramoHorario;

@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Asignatura } from "../core/model/asignatura";
-import { Datos } from "../interface/datos";
 
 @Injectable({
   providedIn: "root",
 })
-export class DatosMockService implements Datos {
+export class DatosMockService {
   private estudios: Map<String, String[]> = new Map<String, String[]>();
   private diasSemana: string[];
   private tramoHorario: string[];
